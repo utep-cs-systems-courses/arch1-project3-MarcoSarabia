@@ -13,6 +13,8 @@
  */
 void drawPixel(u_char col, u_char row, u_int colorBGR);
 
+void drawSquare(u_char col, u_char row, u_int colorBGR);
+
 /** Fill rectangle
  *
  *  \param colMin Column start

@@ -17,6 +17,23 @@ void drawPixel(u_char col, u_char row, u_int colorBGR)
   lcd_writeColor(colorBGR);
 }
 
+void drawSquare(u_char col, u_char row, u_int colorBGR){
+  for(int i = 0; i < 30; i++){
+    drawPixel(col, row, colorBGR);
+    drawPixel(col + 30, row, colorBGR);
+    drawPixel(row, col, colorBGR);
+    drawPixel(row, col + 30, colorBGR);
+    
+    row++;
+  }
+}
+
+void drawRectangle(u_char col, u_char row, u_int colorBGR){
+}
+
+void drawTriangle(u_char col, u_char row, u_int colorBGR){
+}
+
 /** Fill rectangle
  *
  *  \param colMin Column start

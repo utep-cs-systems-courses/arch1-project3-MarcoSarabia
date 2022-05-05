@@ -1,0 +1,25 @@
+#include <msp430.h>
+#include "libTimer.h"
+#include "led.h"
+#include "buzzer.h"
+#include "statemachines.h"
+
+
+void __interrupt_vec(WDT_VECTOR) WDT(){ /* 250 interrupts/sec */
+  
+  
+  switch(currentStateMachine){
+  case 1:
+    drawSquare(10, 10, COLOR_BLACK);
+    break;
+  case 2:
+    
+    break;
+  case 3:
+    
+    break;
+  case 4:
+    clearScreen(COLOR_RED);
+    break;
+  }
+} 
