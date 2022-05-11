@@ -70,12 +70,7 @@ void switch_init()/* setup switch */
 
 
 int switches = 0;
-
-
-
-void switch_interrupt_handler()
-
-{
+void switch_interrupt_handler(){
 
   char p2val = switch_update_interrupt_sense();
   switches = ~p2val & SWITCHES;
@@ -100,21 +95,23 @@ void wdt_c_handler(){
   static int sec2Count = 0;
   static int sec1Count = 0;
 
-  if (sec2Count++ >= 125) {/* 2/sec */
+  if (sec2Count++ >= 50) {// 2/sec
 
     sec2Count = 0;
-    current_color = (current_color+1) % NUM_SQCOLORS;
+    //current_color = (current_color+1) % NUM_SQCOLORS;
     redrawScreen = 1;
   }
 
-  if (sec1Count++ >= 250) {/* 1/sec */
+  /*
+  if (sec1Count++ >= 250) {// 1/sec x
     sec1Count = 0;
-    current_position = (current_position+1) % NUM_POSITIONS;
+    //current_position = (current_position+1) % NUM_POSITIONS;
     redrawScreen = 1;
   }
+  */
 }
 
-//void update_shape();
+void update_shape();
 
 void main(){
 
@@ -145,9 +142,34 @@ void main(){
     P1OUT |= LED;/* led on */
   }
 }
- 
+
+static int col = 10;
+static int row = 10;
 void update_shape(){
+
+  redrawScreen = 0;
+
+  if(col <= screenWidth - 10 && row == 10){
+    fillRectangle(col, row, 10, 10, BG_COLOR);
+    col++;
+  }
+  if(col == screenWidth - 10 && row <= screenHeight - 10){
+    fillRectangle(col, row, 10, 10, BG_COLOR);
+    row++;
+  }
+  if(col >= 10 && row == screenHeight - 10){
+    fillRectangle(col, row, 10, 10, BG_COLOR);
+    col--;
+  }
+  if(col == 10 && row >= 10){
+    fillRectangle(col, row, 10, 10, BG_COLOR);
+    row--;
+  }
+
   
+  fillRectangle(col, row, 10, 10, COLOR_CYAN);
+
+  /*
   static char last_position = 0, last_color = 0;
 
   redrawScreen = 0;
@@ -170,18 +192,22 @@ void update_shape(){
   short col = positions[last_position].col;
   short row = positions[last_position].row;
 
-  if (pos != last_position)    // erase if position changed 
+  if (pos != last_position){    // erase if position changed 
     fillRectangle(col-5, row-5, 10, 10, BG_COLOR);
+    //drawSquare(col - 5, row - 5, BG_COLOR);
+  }
 
   // draw new shape 
   col = positions[pos].col;
   row = positions[pos].row;
 
   fillRectangle(col-5, row-5, 10, 10, sqColors[color]); // draw new shape 
-
+  
+  
   // remember color & pos for next redraw 
   last_position = pos;
   last_color = color;
+  */
 }
 
 /* Switch on S2 */
