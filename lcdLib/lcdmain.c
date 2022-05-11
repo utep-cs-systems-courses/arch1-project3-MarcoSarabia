@@ -16,6 +16,8 @@ int
 main()
 {
   configureClocks();
+
+  led_init();
   
   lcd_init();
 
@@ -24,11 +26,9 @@ main()
   buzzer_init();
 
   clearScreen(COLOR_RED);
-
-  drawString5x7(20,20, "Marco", COLOR_BLACK, COLOR_WHITE);
+  //drawString5x7(20,20, "Marco", COLOR_BLACK, COLOR_WHITE);
 
   //enableWDTInterrupts();
-  
   
   or_sr(0x18);
   
@@ -37,15 +37,5 @@ main()
   
 
   //fillRectangle(30,30, 60, 60, COLOR_ORANGE);
-
-  //int col = 0, row = 0;
-  //int fcol = 25, frow = 25;
-  //for(int i = 0; i < 25; i++){
-    //drawPixel(col, row, COLOR_WHITE);
-    //drawPixel(col, frow, COLOR_WHITE);
-    //col++;
-    //row++;
-    //frow--;
-  //}
   
 }

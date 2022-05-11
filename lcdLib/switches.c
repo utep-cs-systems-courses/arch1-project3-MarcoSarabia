@@ -21,25 +21,29 @@ void switch_interrupt_handler(){
 
 /* Checks if any button is pressed down */
   if (~p2val & SW1) {           //When button 1 is pressed
-
+    
     currentStateMachine = 1;
-    enableWDTInterrupts();
+    drawSquare(10, 10, COLOR_BLACK);
+    
     
   }
   if(~p2val & SW2) {            //When button 2 is pressed
     
     currentStateMachine = 2;
-    //enableWDTInterrupts();
+    drawSquare(10, 10, COLOR_GREEN);
+    
   }
   if(~p2val & SW3) {            //When button 3 is pressed
     
     currentStateMachine = 3;
-    //enableWDTInterrupts();
+    drawSquare(10, 10, COLOR_WHITE);
+    
   }
   if(~p2val & SW4){             //When button 4 is pressed
 
     currentStateMachine = 4;
-    enableWDTInterrupts();
+    drawSquare(10, 10, COLOR_VIOLET);
+    
     
     
   }
